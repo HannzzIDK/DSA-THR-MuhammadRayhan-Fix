@@ -11,22 +11,24 @@ public class Main {
         if (!sc.hasNextInt()) {
             sc.close();
             return;
-        } // Keamanan dasar
+        }
         int n = sc.nextInt();
 
         Stack<String> stack = new Stack<>();
         Queue<String> queue = new LinkedList<>();
 
-        // Membaca semua token input yang tersisa
-        int count = 0;
-        while (sc.hasNext()) {
+        // -- PERBAIKAN PEMBACAAN INPUT --
+        // Kita tahu persis bahwa Grup 1 punya n elemen, dan Grup 2 juga punya n elemen.
+        // Jadi total kita hanya perlu membaca 2 * n token.
+        int totalTokens = n * 2;
+
+        for (int i = 0; i < totalTokens; i++) {
             String token = sc.next();
-            if (count < n) {
-                stack.push(token); // Masuk ke Stack (Grup 1)
+            if (i < n) {
+                stack.push(token); // n token pertama masuk Stack (Grup 1)
             } else {
-                queue.add(token); // Masuk ke Queue (Grup 2)
+                queue.add(token); // n token berikutnya masuk Queue (Grup 2)
             }
-            count++;
         }
         sc.close();
 
